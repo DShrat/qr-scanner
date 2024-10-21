@@ -7,7 +7,7 @@ export default function Home() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [qrCodeData, setQrCodeData] = useState<string | null>(null);
   const [qrCodeLink, setQrCodeLink] = useState<string | null>(null);
-  
+
   // Function to validate URL
   const isValidURL = (str: string) => {
     const pattern = new RegExp(
@@ -25,7 +25,11 @@ export default function Home() {
   useEffect(() => {
     const startVideo = async () => {
       try {
-        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: {
+            facingMode: { exact: "environment" }, // Request back camera
+          },
+        });
         if (videoRef.current) {
           videoRef.current.srcObject = stream;
         }
@@ -40,7 +44,7 @@ export default function Home() {
       const video = videoRef.current;
       const canvas = canvasRef.current;
       const context = canvas.getContext("2d");
-      
+
       if (!context) return;
 
       // Set canvas size to video dimensions

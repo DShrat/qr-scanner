@@ -96,7 +96,7 @@ export default function Home() {
   return (
     <main className="min-h-screen font-mono bg-slate-800 grid grid-cols-1 place-content-center xs:px-5 lg:px-64">
       <section className="titleTop">
-        <p className="text-center text-2xl font-bold mb-10">QR SCANNER</p>
+        <p className="text-center text-2xl font-bold mb-10">QR SCANNER for Mobile Web</p>
       </section>
       <section className="grid place-content-center">
         <section className="flex justify-center">
@@ -110,7 +110,7 @@ export default function Home() {
             {qrCodeData ? (
               qrCodeLink ? (
                 // If QR code data is a valid URL, render it as a clickable link
-                <a href={qrCodeLink} target="_blank" rel="noopener noreferrer">
+                <a className="h-auto" href={qrCodeLink} target="_blank" rel="noopener noreferrer">
                   {qrCodeLink}
                 </a>
               ) : (
